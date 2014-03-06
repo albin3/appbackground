@@ -1,0 +1,114 @@
+{% extends '../base.html' %}
+
+{% block css_files %}
+  {% parent %}
+  <link rel="stylesheet" href="/css/account/signin.css"/>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <form class="form-signin" action="/account/signin" method="post" role="form">
+    <h2 class="form-signin-heading">登录</h2>
+    <input type="text" class="form-control" name="username" id="signin-username" placeholder="用户名" required autofocus></br>
+    <input type="password" class="form-control" name="password" id="signin-password" placeholder="密码" required></br>
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary" type="submit">提交</button>
+        <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#fade-signup">注册</button>
+      </div>
+    </form>
+  </form>
+</div><!-- End .container -->
+
+<div class="modal fade" id="fade-signup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">注册</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="user-name" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="user-name" name="user-name" placeholder="用户名">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="user-password" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-4">
+              <input type="password" class="form-control" id="user-password" name="user-password" placeholder="密码">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="user-confirm" class="col-sm-2 control-label">确认密码</label>
+            <div class="col-sm-4">
+              <input type="password" class="form-control" id="user-confirm" name="user-confirm" placeholder="确认密码">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+  $('#fade-signup .modal-footer .btn-primary').click(function (){
+    var username = $('#user-name').val();
+    var password = $('#user-password').val();
+    var confirm = $('#user-confirm').val();
+
+    if (username !== "" && password !== "" && confirm === password) {
+      $.post('/account/new', {
+        username: username,
+        password: password
+        },function (data){
+        data = JSON.parse(data); // 还要转换，应该可以去掉这个步骤
+        if (data.status) {
+          $('#signin-username').val(username);
+          $('#signin-password').val(password);
+          $('#fade-signup').modal('hide');
+          } else {
+          alert("用户名已被使用");
+        }
+      });
+      } else {
+      alert("请正确输入");
+    }
+  });
+
+  $('#fade-signup').on('show.bs.modal', function (e) {
+    $('#user-name').val($('#signin-username').val());
+    $('#user-password').val($('#signin-password').val());
+  });
+
+  $('#fade-signup').on('hide.bs.modal', function (e) {
+    $('#user-name').val("");
+    $('#user-password').val("");
+    $('#user-confirm').val("");
+  });
+  function btn_show() {
+    var count = -1;
+    var value = ['.form-signin .btn-primary', '.form-signin .btn-default'];
+    return function() {
+      count = count + 1;
+      return value[count];
+    };
+  }
+  $().ready(function() {
+    $('.form-signin .btn-primary').hide();
+    $('.form-signin .btn-default').hide();
+    var bt = btn_show();
+    setTimeout(function(){
+      $(bt()).show()
+      setTimeout(function(){$(bt()).show()}, 200);
+      }, 200);
+  });
+</script>
+{% endblock %}

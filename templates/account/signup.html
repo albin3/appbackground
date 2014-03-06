@@ -1,0 +1,19 @@
+{% extends '../base.html' %}
+
+{% block css_files %}
+  {% parent %}
+  <link rel="stylesheet" href="/css/account/signup.css"/>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <form class="form-signup" action="/user/signup" method="post" role="form">
+    <h2 class="form-signup-heading">注册</h2>
+    <input type="text" class="form-control" name="phone_number" placeholder="手机号" required autofocus>
+    <input type="text" class="form-control" name="username" placeholder="用户名" required autofocus>
+    <input type="password" class="form-control" name="password" placeholder="密码" required>
+    <input type="password" class="form-control" name="password_confirm" placeholder="密码确认" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+  </form>
+</div><!-- End .container -->
+{% endblock %}

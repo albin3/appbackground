@@ -1,0 +1,11 @@
+/* 说说输入框宽度 */ 
+input#saysomething{
+  min-width: 600px;
+}
+/* 说说按钮宽度 */ 
+button#btn-saysomething{
+  min-width: 100px;
+}
+.div-saysomething{
+  text-align: center;
+}

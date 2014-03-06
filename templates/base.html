@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf=8">
+    <title>{% block title %}Our Space{% endblock %}</title>
+
+    {% block css_files %}
+    <link rel="stylesheet" href="/css/utils/bootstrap.min.css">
+    {% endblock %}
+
+    {% block js_files %}
+    <script src="/js/utils/jquery-1.10.2.min.js"></script>
+    <script src="/js/utils/bootstrap.min.js"></script>
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>
