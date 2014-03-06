@@ -1,0 +1,15 @@
+{
+  "name": "AppBackground",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": ">=3.4.8",
+    "swig": ">=1.3.2",
+    "mongodb": ">=1.4",
+    "mongojs": "*",
+    "password-hash": "*"
+  }
+}
