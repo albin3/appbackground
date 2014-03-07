@@ -23,13 +23,14 @@ exports.authenticate = function(user, callback) {
     dbAccount.findOne({
       username: user.username
     }, function(err, doc) {
+      db.close();
       if (err || !doc) {
         return callback(err, 1); // 没有用户
       }
       if (password_hash.verify(user.password, doc.password)) {
-        callback(null);
+        return callback(null);
       } else {
-        callback(err, 2);       // 密码不正确
+        return callback(err, 2);       // 密码不正确
       }
     });
   });

@@ -10,6 +10,7 @@
     "mongodb": ">=1.4",
     "node-xlsx": ">=0.4",
     "mongojs": ">=0.10.1",
+    "formidable": ">=1.0.14",
     "password-hash": ">=1.2.1"
   }
 }
