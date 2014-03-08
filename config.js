@@ -10,4 +10,8 @@ config.dbinfo = {
   dbmongoose: "mongodb://localhost/appBg"
 };
 
+config.appPath = function() {
+  return __dirname;
+};
+
 module.exports = config;
