@@ -18,9 +18,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="#">推送焦点图</a></li>
+            <li><a href="#">推送新闻</a></li>
+            <li><a href="#">推送紫外警告</a></li>
             <li><a href="#">Help</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -39,8 +39,11 @@
           <h1 class="page-header">{{ Title }}</h1>
 
           <div class="row">
+            <div class="col-sm-1">
+              <label>焦点图</label>
+            </div>
             <div class="col-xs-6 col-sm-3">
-              <img src="/img/a.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img src="/img/a.jpg" width="251px" height="188px">
               <form role="form" enctype="multipart/form-data" method="post" action="/appbg/news/updatepic/a"> 
                 <label>选择文件并提交</label>
                 <input type="file" name="upload">
@@ -49,7 +52,7 @@
               </form>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <img src="/img/b.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img src="/img/b.jpg" width="251px" height="188px">
               <form role="form" enctype="multipart/form-data" method="post" action="/appbg/news/updatepic/b"> 
                 <label>选择文件并提交</label>
                 <input type="file" name="upload">
@@ -58,8 +61,8 @@
               </form>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <img src="/img/c.jpg" enctype="multipart/form-data" class="img-responsive" alt="Generic placeholder thumbnail">
-              <form role="form" method="post" action="/appbg/news/updatepic/c"> 
+              <img src="/img/c.jpg" width="251px" height="188px">
+              <form role="form" enctype="multipart/form-data" method="post" action="/appbg/news/updatepic/c"> 
                 <label>选择文件并提交</label>
                 <input type="file" name="upload">
                 <p></p>
@@ -68,137 +71,238 @@
             </div>
           </div>
 
-          <h2 class="sub-header">Section title</h2>
+          <hr>
+          <div class="inline-form">
+          <h2 class="sub-header">新闻列表</h2>
+          <button class="btn btn-primary">添加新闻</button>
+          <button class="btn btn-danger">删除所有</button>
+          </div>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>标题</th>
+                  <th>内容</th>
+                  <th>链接</th>
+                  <th>图片</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                {% for news in newslist %}
+                <tr data-id="{{ news._id.toString() }}">
+                  <td class="td-title">{{ news.title }}</td>
+                  <td class="td-summary">{{ news.summary }}</td>
+                  <td class="td-url"><a href="{{ news.url }}">{{ news.url }}</a></td>
+                  <td class="td-picture">
+                    <ul class=list-inline>
+                      <label>首图&nbsp;</label>
+                      <img src="/img/c.jpg" width="50" height="31">
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class=list-inline>
+                      <p></p>
+                      <li><a href="#" class="a-edit-news" data-toggle="modal" data-target="#modal-edit-news">编辑</a></li>
+                      <li><a href="#" class="a-del-news">删除</a></li>
+                    </ul>
+                  </td>
                 </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
         </div>
       </div>
+      <div class="modal fade" id="modal-edit-news">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">添加新闻</h4>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="news-title" class="col-sm-2 control-label">标题</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="news-title" name="news-title">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="news-summary" class="col-sm-2 control-label">导语</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" rows="2" id="news-summary" name="news-summary"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="news-detail" class="col-sm-2 control-label">内容</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" rows="10" id="news-detail" name="news-detail"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="news-url" class="col-sm-2 control-label">外部链接</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="news-url" name="news-url">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">增加图片</label>
+                  <div class="col-sm-4">
+                    <input type="file" name="upload">
+                    <p></p>
+                    <button class="btn btn-primary">增加图片</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary">确定</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- End modal -->
     </div>
+    <script>
+      $(".main .btn-primary").click(function(){
+        $(".main .btn-primary").attr("disabled", true); // 灰掉按钮，免得点太快
+
+        $.post("/appbg/news/add", {
+          title: "标题",
+          summary: "导语",
+          detail: "内容",
+          url: "www.baidu.com"
+          },function(data){
+          data = JSON.parse(data); // 解析返回的json数据
+          if (!data.status) {
+            alert("添加新闻项失败");
+            return;
+          }
+
+          var new_raw = 
+          '<tr data-id="' + data.doc._id.toString() + '">' +
+            '<td class="td-title">' + data.doc.title + '</td>' +
+            '<td class="td-summary">' + data.doc.summary + '</td>' +
+            '<td class="td-url"><a href="' + data.doc.url + '">' + data.doc.url + '</a></td>' +
+            '<td class="td-picture">' +
+              '<ul class=list-inline>' +
+                '<label>首图&nbsp;&nbsp;</label>' +
+                '<img src="/img/c.jpg" width="50" height="31">' +
+                '<p></p>' +
+                '</ul>' +
+              '</td>' +
+            '<td>' +
+              '<ul class=list-inline>' +
+                '<p></p>' +
+                '<li><a href="#" class="a-edit-news" data-toggle="modal" data-target="#modal-edit-news">编辑</a></li>' +
+                '<li><a href="#" class="a-del-news">删除</a></li>' +
+                '</ul>' +
+              '</td>' +
+            '</tr>';
+          $(".table-striped tbody").append(new_raw);
+
+          $(".main .btn-primary").attr("disabled", false);
+        });
+      });
+
+      // 为了使新增的按钮上绑定事件，直接在table上绑定点击事件，再检测是哪个元素
+      $(".table-striped tbody").click(function(event){
+        if ($(event.target).context.className === "a-del-news"){
+          delete_news(event);
+          } else if ($(event.target).context.className === "a-edit-news") {
+          edit_news(event);
+        }
+      });
+
+      // 删除新闻
+      function delete_news(event) { 
+        if (!confirm('确实要删除吗？')) {       // 要求确认
+          return;
+        }
+        var tr = $(event.target).parents("tr");
+        $.post("/appbg/news/del",{
+          id: tr.attr("data-id")
+          }, function(data) {
+          data = JSON.parse(data);
+          if (!data.status) {
+            alert("删除失败");
+            return;
+          }
+          tr.remove();
+        });
+      }; 
+
+      // 编辑前，把列表中的东西填充到modal中，作为准备
+      function edit_news(event) {
+        $('.modal-added').remove(); // 上次编辑留下的布局脏数据清除
+        var tr = $(event.target).parents("tr");
+
+        var title = tr.children("td.td-title").text();
+        var summary = tr.children("td.td-summary").text();
+        var url = tr.children("td.td-url").text();
+
+        $("#news-title").val(title);
+        $("#news-summary").val(summary);
+        $("#news-url").val(url);
+
+        // 获取到详情跟图片信息
+        $.post("/appbg/news/beforeedit",{id: tr.attr("data-id")}, function(data){ 
+          data = JSON.parse(data); // 解析返回的json数据
+          var detail = data.detail;
+          $("#news-detail").val(detail);
+          var imgs = "";
+          for (item in data.imgs) {
+            var img = 
+                '<div class="form-group">' + 
+                  '<label for="news-summary" class="col-sm-2 control-label">图片</label>' + 
+                  '<div class="col-sm-10">' + 
+                    '<img src="' + item + '" width="50" height="31">' + 
+                  '</div>' + 
+                '</div>';
+            imgs = imgs + img;
+          }
+          $(".modal-body").append(imgs);
+        });
+      };
+
+      // 编辑过程中会改变布局，显示时删除上次编辑产生的脏布局
+      $('#modal-edit-news').on('show.bs.modal', function(event) { 
+        $('.modal-added').remove();
+      });
+      
+      // 编辑完成后post到数据库中存储
+      $("#modal-edit-news .modal-footer .btn-primary").click(function(e){ 
+        var title = $("#news-title").val();
+        var summary = $("#news-summary").val();
+        var detail = $("#news-detail").val();
+        var url = $("#news-url").val();
+
+        $("#modal-edit-news").modal("hide");
+      }); 
+
+      // 删除所有数据
+      $(".btn-danger").click(function(){
+        if (!confirm('确实要删除所有数据吗？')) {       // 要求确认
+          return;
+        }
+        $.post("/appbg/news/delall",function(data){
+          if(data.status) {
+            $(".table-striped tbody tr").remove();
+            alert("删除成功..");
+            } else {
+            alert("删除失败..");
+          }
+          },"json");
+      });
+    </script>
 {% endblock %}
+
 
 
